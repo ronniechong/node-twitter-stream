@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _dotenv2.default.config();
 
-var filterString = '@carsalescyclops';
+var filterString = 'some string';
 
 var client = new _twitter2.default({
   consumer_key: process.env.CONSUMER_KEY,
@@ -24,7 +24,9 @@ var client = new _twitter2.default({
 var stream = client.stream('statuses/filter', { track: filterString });
 
 stream.on('data', function (event) {
+  //receives event
   console.log(event);
+  //Listens for media upload
   console.log(event.entities.media[0]);
   console.log(event.extended_entities.media[0]);
 });
@@ -32,11 +34,3 @@ stream.on('data', function (event) {
 stream.on('error', function (error) {
   throw error;
 });
-
-// client.post('statuses/update', {status: 'test'},  function(error, tweet, response) {
-//   if(error) throw error;
-//   console.log(tweet);  // Tweet body. 
-//   console.log(response);  // Raw response object. 
-// });
-
-//https://gist.github.com/edds/1192510

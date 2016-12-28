@@ -12,9 +12,12 @@ let client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-let stream = client.stream('statuses/filter', {track: filterString});
+let stream = client.stream(
+  'statuses/filter', 
+  {track: filterString}
+);
 
-stream.on('data', function(event) {
+stream.on('data', (event) => {
 	//receives event
   console.log(event);
   //Listens for media upload
@@ -22,7 +25,6 @@ stream.on('data', function(event) {
   console.log(event.extended_entities.media[0]);
 });
 
-
-stream.on('error', function(error) {
+stream.on('error', (error) => {
   throw error;
 });
